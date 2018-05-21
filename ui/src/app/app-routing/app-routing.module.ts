@@ -1,7 +1,7 @@
-import { TodosComponent } from './../todos-module/todos/todos.component';
 import { UsersComponent } from './../user-module/users/users.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {RecordsComponent} from './../record-module/records/records.component';
 const routes: Routes = [
       {
         path:'',
@@ -9,7 +9,7 @@ const routes: Routes = [
       },
       {
         path:'users/:id',
-        component: TodosComponent
+        component: RecordsComponent
       }
   ];
 

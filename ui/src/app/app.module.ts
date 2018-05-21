@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { UsersService } from './users.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserModuleModule } from './user-module/user-module.module';
+import { RecordModule } from './record-module/record.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -18,6 +20,7 @@ import { UserModuleModule } from './user-module/user-module.module';
     FormsModule,
     AppRoutingModule,
     UserModuleModule,
+    RecordModule,
     HttpModule
   ],
   providers: [UsersService],
