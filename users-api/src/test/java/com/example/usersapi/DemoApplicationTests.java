@@ -83,11 +83,10 @@ public class DemoApplicationTests {
 		// Now there should be three Users again after the refresh
 		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
 
-//		// Check that the data is showing up for the third User
-//		Long thirdUserId = secondUserId + 1;
-//		$("#user-" + thirdUserId + "-user-name").shouldHave(text("third_user"));
-//		$("#user-" + thirdUserId + "-first-name").shouldHave(text("Third"));
-//		$("#user-" + thirdUserId + "-last-name").shouldHave(text("User"));
+		// Check that the data is showing up for the third User
+		Long thirdUserId = secondUserId + 1;
+		$("#user-" + thirdUserId).shouldHave(text("Third User"));
+
 //		// test updating first user
 //		$("#edit-user-" + secondUserId).click();
 //		$("#edit-user-last-name").sendKeys("firstLastName-edit");
