@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class UsersService {
 
-  constructor(private http:Http) { }
+  constructor(private http:HttpClient) { }
   allUsers(){
     return this.http.get('/api/users');
   }

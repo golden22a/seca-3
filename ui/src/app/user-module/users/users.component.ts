@@ -12,12 +12,12 @@ export class UsersComponent implements OnInit {
   constructor(private userService:UsersService) { }
 
   ngOnInit() {
-    this.userService.allUsers().subscribe(res => this.users=res.json())
+    this.userService.allUsers().subscribe(res => this.users=res)
   }
   addUser(){
     if(this.firstName.length>0 && this.lastName.length >0)
     this.userService.addUser(this.firstName,this.lastName).subscribe(res=>{
-      this.users.push(res.json());
+      this.users.push(res);
       this.firstName="";
       this.lastName="";
     })
