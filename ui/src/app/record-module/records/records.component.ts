@@ -13,7 +13,10 @@ export class RecordsComponent implements OnInit {
   ngOnInit() {
     this.recordService
     .getAllPublicHearings()
-    .subscribe(res=> this.records=res.json())
+    .subscribe(res=> {
+      this.records=res.json();
+      this.records.splice(0,1);
+    })
   }
 
 }

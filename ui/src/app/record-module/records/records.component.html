@@ -1,3 +1,4 @@
 
 <h1>public hearing and meetings </h1>
-  <app-record *ngFor="let record of records" [record]="record"></app-record>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <app-record *ngFor="let record of records | paginate: {itemsPerPage:5, currentPage:p}" [record]="record"></app-record>

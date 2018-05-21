@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserModuleModule } from './user-module/user-module.module';
 import { RecordModule } from './record-module/record.module';
 import { RecordsService } from './records.service';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { RecordsService } from './records.service';
     AppRoutingModule,
     UserModuleModule,
     RecordModule,
+    NgxPaginationModule,
     HttpModule
   ],
   providers: [UsersService,RecordsService],

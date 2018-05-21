@@ -1,9 +1,9 @@
-<div class='content' *ngIf="user">
+<div class='content' *ngIf="user" data-user-diplay>
  <p> <a routerLink="users/{{user.id}}">
   {{user.firstName}} {{user.lastName}}
 </a></p><span>
-  <i class="fas fa-edit" (click)="open(content)"></i>
-<i class="fas fa-times" (click)="deleteUser()"></i></span>
+  <i class="fas fa-edit" (click)="open(content)" ></i>
+<i class="fas fa-times" (click)="deleteUser()" ></i></span>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Update User {{user.firstName}} {{user.lastName}}</h4>
