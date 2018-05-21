@@ -8,7 +8,7 @@ import { UsersService } from './users.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserModuleModule } from './user-module/user-module.module';
 import { RecordModule } from './record-module/record.module';
-
+import { RecordsService } from './records.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +23,7 @@ import { RecordModule } from './record-module/record.module';
     RecordModule,
     HttpModule
   ],
-  providers: [UsersService],
+  providers: [UsersService,RecordsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
