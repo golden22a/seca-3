@@ -7,10 +7,13 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     CommonModule,
+    
+  ],
+  declarations: [
     RecordComponent,
     RecordsComponent
+
   ],
-  declarations: [],
   exports: [RecordsComponent,RecordComponent]
 
 })
