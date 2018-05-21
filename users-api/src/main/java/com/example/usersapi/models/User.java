@@ -4,7 +4,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter
+@AllArgsConstructor  @Getter @Setter
 @Entity @Table(name = "USERS")
 public class User {
 
@@ -18,5 +18,26 @@ public class User {
 
     @Column(name = "LAST_NAME")
     private String lastName;
+    public User(){}
+    public User(String first,String last){
+        this.firstName=first;
+        this.lastName=last;
+    }
+    public String getFirstName(){
+        return this.firstName;
+    }
+    public String getLastName(){
+        return this.lastName;
+    }
+    public void setFirstName(String a){
+        this.firstName=a;
+    }
+    public void setLastName(String b){
+         this.lastName=b;
+    }
+
+        public Long getId(){
+        return this.id;
+    }
 
 }

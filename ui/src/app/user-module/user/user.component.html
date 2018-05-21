@@ -1,9 +1,9 @@
-<div class='content' *ngIf="user" data-user-diplay>
- <p> <a routerLink="users/{{user.id}}">
+<div class='content' *ngIf="user" data-user-display>
+ <p id="user-{{user.id}}"> <a routerLink="users/{{user.id}}">
   {{user.firstName}} {{user.lastName}}
 </a></p><span>
-  <i class="fas fa-edit" (click)="open(content)" ></i>
-<i class="fas fa-times" (click)="deleteUser()" ></i></span>
+  <i class="fas fa-edit" (click)="open(content)" id="modal-{{user.id}}"></i>
+<i class="fas fa-times" (click)="deleteUser()" id="delete-{{user.id}}"></i></span>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Update User {{user.firstName}} {{user.lastName}}</h4>
@@ -12,9 +12,9 @@
       </button>
     </div>
     <div class="modal-body">
-        <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}"/>
-        <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}"/>
-        <button class="btn  btn-outline-primary" (click)="updateUser()">Update</button>
+        <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-{{user.id}}"/>
+        <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-{{user.id}}"/>
+        <button class="btn  btn-outline-primary" (click)="updateUser()" id="update-{{user.id}}">Update</button>
     
     </div>
     <div class="modal-footer">
