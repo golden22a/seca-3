@@ -69,23 +69,20 @@ public class DemoApplicationTests {
 
 
 		// Add a new user
-//		$("#new-user-user-name").sendKeys("third_user");
-//		$("#new-user-first-name").sendKeys("Third");
-//		$("#new-user-last-name").sendKeys("User");
-//
-//		$("#new-user-submit").click();
-//
-//		// Make sure we're now on the users page again
-//		$("#users-wrapper").should(appear);
-//
-//		// Now there should be three Users
-//		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
-//
-//		refresh();
-//
-//		// Now there should be three Users again after the refresh
-//		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
-//
+
+		$("#first-name-input").sendKeys("Third");
+		$("#last-name-input").sendKeys("User");
+
+		$("#add-user").click();
+
+		// Now there should be three Users
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
+
+		refresh();
+
+		// Now there should be three Users again after the refresh
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
+
 //		// Check that the data is showing up for the third User
 //		Long thirdUserId = secondUserId + 1;
 //		$("#user-" + thirdUserId + "-user-name").shouldHave(text("third_user"));
