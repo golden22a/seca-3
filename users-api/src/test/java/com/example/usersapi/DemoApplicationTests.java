@@ -96,17 +96,16 @@ public class DemoApplicationTests {
 //
 		$("#update-"+secondUserId).click();
 		$("#user-" + secondUserId).shouldHave(text("firstFirstName-edit firstLastName-edit"));
-//
-//
-//		// Test Deleting the first user
-//		$("#user-" + firstUserId + "-user-name").should(exist);
-//		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
-//
-//		$("#delete-user-" + firstUserId).click();
-//		$("#user-" + firstUserId).shouldNot(exist);
-//		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
-//
-//		$("#edit-user"+firstUserId).click();
+
+
+		// Test Deleting the first user
+		$("#user-" + firstUserId).should(exist);
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
+
+		$("#delete-" + firstUserId).click();
+		$("#user-" + firstUserId).shouldNot(exist);
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
+
 
 	}
 }
