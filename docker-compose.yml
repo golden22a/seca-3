@@ -67,7 +67,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - ./way_farer_backend:/home/node/app
+      - ./auth:/home/node/app
     depends_on:
       - eureka
     ports:
