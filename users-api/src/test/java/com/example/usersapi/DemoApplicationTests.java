@@ -87,15 +87,15 @@ public class DemoApplicationTests {
 		Long thirdUserId = secondUserId + 1;
 		$("#user-" + thirdUserId).shouldHave(text("Third User"));
 
-//		// test updating first user
-//		$("#edit-user-" + secondUserId).click();
-//		$("#edit-user-last-name").sendKeys("firstLastName-edit");
-//		$("#edit-user-first-name").sendKeys("firstFirstName-edit");
-//		$("#edit-user-user-name").sendKeys("firstUserName-edit");
-//		$("#edit-user-submit").click();
-//		$("#user-" + secondUserId + "-user-name").shouldHave(text("firstUserName-edit"));
-//		$("#user-" + secondUserId + "-first-name").shouldHave(text("firstFirstName-edit"));
-//		$("#user-" + secondUserId + "-last-name").shouldHave(text("firstLastName-edit"));
+		// test updating first user
+		$("#modal-" + secondUserId).click();
+		$("#last-name-"+secondUserId).clear();
+		$("#first-name-"+secondUserId).click();
+		$("#last-name-"+secondUserId).sendKeys("firstLastName-edit");
+		$("#first-name-"+secondUserId).sendKeys("firstFirstName-edit");
+//
+		$("#update-"+secondUserId).click();
+		$("#user-" + secondUserId).shouldHave(text("firstFirstName-edit firstLastName-edit"));
 //
 //
 //		// Test Deleting the first user
