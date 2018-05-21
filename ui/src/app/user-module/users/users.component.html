@@ -1,0 +1,7 @@
+<h1> USERS</h1>
+<div >
+    <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}"/>
+    <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}"/>
+    <button class="btn  btn-outline-primary" (click)="addUser()">ADD</button>
+</div>
+<app-user *ngFor="let user of users" [user]='user'></app-user>

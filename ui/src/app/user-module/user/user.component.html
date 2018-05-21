@@ -1,0 +1,25 @@
+<div class='content' *ngIf="user">
+ <p> <a routerLink="users/{{user.id}}">
+  {{user.firstName}} {{user.lastName}}
+</a></p><span>
+  <i class="fas fa-edit" (click)="open(content)"></i>
+<i class="fas fa-times" (click)="deleteUser()"></i></span>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Update User {{user.firstName}} {{user.lastName}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}"/>
+        <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}"/>
+        <button class="btn  btn-outline-primary" (click)="updateUser()">Update</button>
+    
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+  
+</div>

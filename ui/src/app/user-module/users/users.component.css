@@ -1,0 +1,16 @@
+div{
+    width:23em;
+    margin:1em auto;
+    height: 3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0.5em;
+}
+div input {
+    width:7em;
+    margin: 0.1em 0.5em 0 0;
+    padding-left:0.5em;
+    border:0px;
+}
