@@ -11,9 +11,9 @@ export class UserComponent implements OnInit {
 
   @Input('user')
    user: any;
-   private modal;
-   private firstName;
-   private lastName;
+    modal;
+    firstName;
+    lastName;
   constructor(private userService:UsersService,private modalService: NgbModal) { }
 
   ngOnInit() {

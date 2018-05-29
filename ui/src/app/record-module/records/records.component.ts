@@ -6,7 +6,8 @@ import {RecordsService} from '../../records.service';
   styleUrls: ['./records.component.css']
 })
 export class RecordsComponent implements OnInit {
-  private records;
+   records;
+   p;
   constructor(private recordService:RecordsService) { }
 
   ngOnInit() {
@@ -14,7 +15,7 @@ export class RecordsComponent implements OnInit {
     .getAllPublicHearings()
     .subscribe(res=> {
       this.records=res;
-     
+
     })
   }
 

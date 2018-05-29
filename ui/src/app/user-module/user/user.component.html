@@ -10,11 +10,11 @@
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
+    </div>  
     <div class="modal-body">
         <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-{{user.id}}"/>
         <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-{{user.id}}"/>
-        <button class="btn  btn-outline-primary" (click)="updateUser()" id="update-{{user.id}}">Update</button>
+        <button class="btn  btn-outline-primary"  
     
     </div>
     <div class="modal-footer">

@@ -1,3 +1,4 @@
+import { CurrentUserService } from './../../current-user.service';
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../../users.service';
 @Component({
@@ -6,13 +7,22 @@ import {UsersService} from '../../users.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  private users:any;
-  private firstName;
-  private lastName;
-  constructor(private userService:UsersService) { }
+   users:any;
+   firstName;
+   lastName;
+   user;
+  constructor(private userService:UsersService,private current:CurrentUserService) { 
+this.user={
+  "firstName":""
+};
+  }
 
   ngOnInit() {
-    this.userService.allUsers().subscribe(res => this.users=res)
+  this.current.userChange.subscribe(data=>{
+     this.user=data.user;
+
+   });
+   console.log(this.user);
   }
   addUser(){
     if(this.firstName.length>0 && this.lastName.length >0)

@@ -10,9 +10,15 @@ import { UserModuleModule } from './user-module/user-module.module';
 import { RecordModule } from './record-module/record.module';
 import { RecordsService } from './records.service';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { LoginComponent } from './login-module/login/login.component';
+import { SignupComponent } from './signup-module/signup/signup.component';
+import { DashboardComponent } from './dashboard-module/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    SignupComponent,
+    DashboardComponent,
    
   ],
   imports: [

@@ -11,13 +11,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
+    @Column(name = "USERNAME")
+    private String username;
+    @Column(name = "PASSWORD")
+    private String password;
     @Column(name = "FIRST_NAME")
     private String firstName;
-
     @Column(name = "LAST_NAME")
     private String lastName;
+    @Column(name = "ROLE")
+    private String role;
     public User(){}
     public User(String first,String last){
         this.firstName=first;
