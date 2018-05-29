@@ -24,4 +24,7 @@ export class CurrentUserService {
      this.route.navigate(['/login']);
    });
    }
+   getToken(){
+     return this.token;
+   }
 }
