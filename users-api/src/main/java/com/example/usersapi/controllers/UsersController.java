@@ -26,7 +26,7 @@ public class UsersController {
                         .setSigningKey(SECRET.getBytes())
                         .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                         .getBody();
-    
+
                 String user = claims.get("user", String.class);
 
 
