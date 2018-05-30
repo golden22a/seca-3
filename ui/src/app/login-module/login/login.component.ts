@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     }
     this.loginService.login(user).subscribe(res=>{
       localStorage.setItem("Authorization",res['Authorization']);
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     })
   }
 

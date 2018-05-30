@@ -24,5 +24,6 @@ public class Schedule {
     private Long recordId;
     @Column(name = "NOTE")
     private String note;
+    Schedule(){}
 
 }

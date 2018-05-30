@@ -23,6 +23,8 @@ export class CurrentUserService {
      localStorage.removeItem('Authorization');
      this.route.navigate(['/login']);
    });
+   else
+   this.route.navigate(['/login']);
    }
    getToken(){
      return this.token;

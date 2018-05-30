@@ -21,6 +21,29 @@ public class Main {
         }
         return true;
     }
+    public static int search(int a[],int n){
+        int i=0;
+        int j=a.length-1/2;
+
+        while(i!=j){
+           if(n == a[i]){
+               return i;
+           }
+           if(n == a[j]){
+               return j;
+           }
+           if(n >= a[j]){
+               j = a.length-1-i;
+               i=j;
+
+           }else if( n >= a[i]) {
+
+
+            }
+
+        }
+
+    }
 
     public static void main(String[] args) {
 

@@ -1,3 +1,4 @@
+import { RecordsService } from './../records.service';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -22,20 +23,20 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 
-const colors: any = {
-  red: {
+const colors: any = [
+   {
     primary: '#ad2121',
     secondary: '#FAE3E3'
   },
-  blue: {
+   {
     primary: '#1e90ff',
     secondary: '#D1E8FF'
   },
-  yellow: {
+   {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
   }
-};
+];
 
 @Component({
   selector: 'app-calendar',
@@ -65,8 +66,10 @@ export class CalendarComponent {
     {
       label: '<i class="fa fa-fw fa-times"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
+        this.recordService.delete(event.id).subscribe(res=>{
+          this.events = this.events.filter(iEvent => iEvent !== event);
+          this.refresh.next();
+        })
       }
     }
   ];
@@ -74,43 +77,32 @@ export class CalendarComponent {
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
   ];
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,private recordService:RecordsService) {}
+  recordlist;
+  ngOnInit(){
+    console.log("bou")
+    this.recordService.getAllSavedRecords();
+    this.recordService.recordLst.subscribe(data => {
+      data.forEach(el => {
+     let event={
+      start:startOfDay(el.start_date),
+      end:endOfDay(el.end_date),
+      id:el.request_id,
+      color:colors[Math.floor(Math.random()*2)],
+      actions: this.actions,
+      title:el.short_title,
+      data:el.additional_description_1
+        }
+      this.events.push(event);
+      })
+      this.refresh.next();
 
+    });
+  }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -125,34 +117,12 @@ export class CalendarComponent {
     }
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    event.start = newStart;
-    event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
-    this.refresh.next();
-  }
+ 
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
-    this.refresh.next();
-  }
+  
 }

@@ -7,12 +7,11 @@
     </div>
     <div class="modal-body">
       <div>
-        Action:
-        <pre>{{ modalData?.action }}</pre>
+       
+        {{modalData?.event.title}}
       </div>
       <div>
-        Event:
-        <pre>{{ modalData?.event | json }}</pre>
+        <p [innerHtml]='modalData?.event.data'>{{ modalData?.event | json }}</p>
       </div>
     </div>
     <div class="modal-footer">

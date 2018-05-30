@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentUserService } from '../../current-user.service';
+import { RecordsService } from '../../records.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,11 +12,17 @@ export class DashboardComponent implements OnInit {
     firstName:'',
     lastName:''
   }
-  constructor(private current:CurrentUserService) { }
+  constructor(private current:CurrentUserService,private recordService:RecordsService) { }
 
   ngOnInit() {
     this.current.userChange.subscribe(data=>{
       this.user=data.user;
+    })
+  }
+  call(){
+    console.log("here");
+    this.recordService.getAllSavedRecords().subscribe(res=>{
+      console.log(res);
     })
   }
 

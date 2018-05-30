@@ -1,3 +1,4 @@
+import { RecordsService } from './../../records.service';
 import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
@@ -9,7 +10,7 @@ export class RecordComponent implements OnInit {
   @Input('record')
   record: any;
   address;
-  constructor() { }
+  constructor(private recordService:RecordsService) { }
 
   ngOnInit() {
     this.address=" No Address Required";
@@ -17,5 +18,7 @@ export class RecordComponent implements OnInit {
       this.address=this.record.street_address_1 + " " +(this.record.street_address_2 || "")+", "+this.record.city+", "+this.record.state+", "this.record.zip_code;
     }
   }
-
+  add(){
+    this.recordService.add(this.record).subscribe(a => console.log(a))
+  }
 }

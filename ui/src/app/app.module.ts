@@ -1,3 +1,5 @@
+import { ScheduleService } from './schedule.service';
+import { CurrentUserService } from './current-user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -40,7 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
 
   ],
-  providers: [UsersService,RecordsService],
+  providers: [UsersService,RecordsService,CurrentUserService,ScheduleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

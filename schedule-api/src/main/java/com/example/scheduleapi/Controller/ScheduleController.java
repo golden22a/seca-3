@@ -47,9 +47,19 @@ public class ScheduleController {
     public Schedule findScheduleById(@PathVariable Long scheduleId) {
         return scheduleRepository.findOne(scheduleId);
     }
-    @DeleteMapping("/{scheduleId}")
-    public HttpStatus deleteScheduleById(@PathVariable Long scheduleId) {
-        scheduleRepository.delete(scheduleId);
+    @DeleteMapping("/{scheduleId}/")
+    public HttpStatus deleteScheduleById(@PathVariable Long scheduleId,HttpServletRequest request) {
+        String token = request.getParameter(HEADER_STRING);
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET.getBytes())
+                .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                .getBody();
+
+        String user = claims.get("user", String.class);
+        User userO = userRepository.findByUsername(user);
+        System.out.println(scheduleId);
+       Schedule s= scheduleRepository.getSchdule(userO.getId(),scheduleId);
+       scheduleRepository.delete(s);
         return HttpStatus.OK;
     }
     @PostMapping("/")
