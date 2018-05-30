@@ -13,12 +13,18 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { LoginComponent } from './login-module/login/login.component';
 import { SignupComponent } from './signup-module/signup/signup.component';
 import { DashboardComponent } from './dashboard-module/dashboard/dashboard.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarModule } from 'angular-calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
     DashboardComponent,
+    CalendarComponent,
+
    
   ],
   imports: [
@@ -29,7 +35,10 @@ import { DashboardComponent } from './dashboard-module/dashboard/dashboard.compo
     UserModuleModule,
     RecordModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule.forRoot(),
+    BrowserAnimationsModule
+
   ],
   providers: [UsersService,RecordsService],
   bootstrap: [AppComponent]

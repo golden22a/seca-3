@@ -1,6 +1,12 @@
 <div class='record-content'  *ngIf='record'> 
   <h3> {{record.short_title}} </h3>
-  <div class='record'[innerHTML]="record.additional_description_1">
+  <div class='record'>
+    <P>
+      {{this.address}} <br>
+      {{record.start_date}} <br>
+      {{record.end_date}} <br>
+      
+    </P>
    
   </div>
   </div>  

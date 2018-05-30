@@ -15,6 +15,7 @@ export class RecordsComponent implements OnInit {
     .getAllPublicHearings()
     .subscribe(res=> {
       this.records=res;
+      console.log(res);
 
     })
   }

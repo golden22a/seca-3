@@ -9,6 +9,7 @@ export class RecordsService {
   constructor(private http: HttpClient) { }
 
   getAllPublicHearings(){
-    return this.http.get("https://data.cityofnewyork.us/resource/buex-bi6w.json?$where=type_of_notice_description in('Public Hearings','Meeting')");
+    var today = new Date();
+    return this.http.get(`https://data.cityofnewyork.us/resource/buex-bi6w.json?$where=type_of_notice_description in('Public Hearings','Meeting') and end_date >= '${today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()}'`);
   }
 }
