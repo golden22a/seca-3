@@ -52,19 +52,6 @@ services:
     volumes:
       - './flyway/conf:/flyway/conf'
       - './flyway/sql:/flyway/sql'
-  auth:
-    image: "node:9"
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./auth:/home/node/app
-    depends_on:
-      - eureka
-    ports:
-      - "3000:3000"
-    command: "npm start"
   oauth:
     image: anapsix/alpine-java:8_jdk_unlimited
     ports:
@@ -93,6 +80,3 @@ services:
     environment:
       - GRADLE_USER_HOME=cache
       - SPRING_PROFILES_ACTIVE=dev
-  
-
-
