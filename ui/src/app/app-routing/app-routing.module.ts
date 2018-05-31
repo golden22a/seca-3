@@ -9,6 +9,7 @@ import { SignupComponent } from '../signup-module/signup/signup.component';
 import { UserComponent } from '../user-module/user/user.component';
 import {LogoutComponent} from '../logout/logout.component';
 import {HomeComponent} from '../home/home.component';
+import {UpdateUserComponent} from '../update-user/update-user.component'
 const routes: Routes = [
       {
         path:'login',
@@ -42,6 +43,9 @@ const childRoute: Routes = [
       },{
         path:'calendar',
         component:CalendarComponent
+      },{
+        path:'update',
+        component:UpdateUserComponent
       }
     ]
   }
