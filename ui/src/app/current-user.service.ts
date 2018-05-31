@@ -11,7 +11,7 @@ export class CurrentUserService {
   token;
   userChange= new Subject();
   constructor(private http:HttpClient,private route:Router) {
-    
+    console.log('getting auth');
    this.token = localStorage.getItem('Authorization');
    console.log(this.token);
    if(this.token)
@@ -21,12 +21,21 @@ export class CurrentUserService {
     
    },err=>{
      localStorage.removeItem('Authorization');
+     this.userChange.next(null);
      this.route.navigate(['/login']);
    });
-   else
-   this.route.navigate(['/login']);
+   else{
+    this.userChange.next(null);
+    this.route.navigate(['/login']);
+   }
    }
    getToken(){
      return this.token;
+   }
+   logout(){
+    console.log('heeere');
+    localStorage.removeItem('Authorization');
+    this.userChange.next(null);
+    this.route.navigate(['/']);
    }
 }

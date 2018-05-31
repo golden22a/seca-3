@@ -35,17 +35,41 @@ export class RecordsService {
     })
 }
  getAllSavedRecords(){
+
   let ids="(";
   console.log("Now here");
+  console.log(this.token);
+  if(!this.token){
   this.gotToken.subscribe(data => {
     this.http.get(`${environment.apiHost}/api/schedule/?Authorization=${this.token}`).subscribe(res=>{
-      for(let i=0;i<res.length-1;i++){
+      if(res.length>0){
+      for(let i=0;i<res.length;i++){
+        if(i==res.length-1){
+        ids+=""+res[i].recordId+")"
+        break;
+        }
         ids+=""+res[i].recordId+","
       }
-      ids+=""+res[i].recordId+")"
+      
       this.getAllInfo(ids);
+    }
     })
   })
+  }else{
+    this.http.get(`${environment.apiHost}/api/schedule/?Authorization=${this.token}`).subscribe(res=>{
+      if(res.length>0){
+      for(let i=0;i<res.length;i++){
+        if(i==res.length-1){
+        ids+=""+res[i].recordId+")"
+        break;
+        }
+        ids+=""+res[i].recordId+","
+      }
+      
+      this.getAllInfo(ids);
+    }
+    })
+  }
  
 }
 getAllInfo(ids){

@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/dashboard">{{user.firstName}} {{user.lastName}} <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/dashboard">{{user.firstName}} {{user.lastName}} <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Calendar</a>
+          <a class="nav-link" routerLink="/dashboard/calendar">Calendar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="logout()">logout</a>
+            <a class="nav-link" routerLink="/logout">logout</a>
           </li>
        
       </ul>
@@ -21,8 +21,6 @@
     </div>
   </nav>
   <div class="container">
-  <app-records></app-records>
+    <router-outlet></router-outlet>
 </div>
 
-<button (click)='call()'>click</button>
-<app-calendar></app-calendar>

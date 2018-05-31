@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
     }
     this.signupService.signup(user).subscribe(res=>{
       localStorage.setItem("Authorization",res['Authorization']);
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     })
   }
 

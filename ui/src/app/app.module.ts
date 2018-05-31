@@ -18,6 +18,7 @@ import { DashboardComponent } from './dashboard-module/dashboard/dashboard.compo
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule } from 'angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     DashboardComponent,
     CalendarComponent,
+    LogoutComponent,
 
    
   ],
