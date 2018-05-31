@@ -88,24 +88,11 @@ public class DemoApplicationTests {
 		$("#records").should(exist);
 
 	}
-	@Test
-	public void v3CanSingup() {
-		$("#signup").click();
-		$("#signup-form").should(exist);
-		$("#username").sendKeys("okay12345");
-		$("#password").sendKeys("woow");
-		$("#confim_passowrd").sendKeys("woow");
-		$("#firstName").sendKeys("okay");
-		$("#lastName").sendKeys("lool");
-		$("#signupButton").click();
-		// should be redirectetd to dashboard
 
-		$("#records").should(exist);
 
-	}
 	@Test
-	public void v4CanUpdae(){
-		v2ShouldLogin();
+	public void v3CanUpdae(){
+		$("#login").click();
 		$("#updateLink").click();
 		$("#userDisplay").should(exist);
 		$("#userData").shouldHave(text(""+firstUser.getFirstName()+" "+firstUser.getLastName()));
@@ -116,20 +103,19 @@ public class DemoApplicationTests {
 		$("#last-name-user").sendKeys("have");
 		$("#updateUser").click();
 		$("#userData").shouldHave(text("you have"));
-
-
-
 	}
 	@Test
-	public void v5CanLogout(){
-		v2ShouldLogin();
+	public void v4canLogout(){
+		$("#login").click();
+
 		$("#logout").click();
 		// should be redirected to home page;
 		v1ShouldSeeHomePage();
 	}
+
+
 	@Test
-	public void v6shouldLogAsAdmin(){
-		v1ShouldSeeHomePage();
+	public void v5shouldLogAsAdmin(){
 		$("#login").click();
 
 		$("#login-form").should(exist);
@@ -145,16 +131,15 @@ public class DemoApplicationTests {
 		// should be redirectetd to admin dashboard
 		$("#header").should(exist);
 		$("#header").shouldHave(text(secondUser.getFirstName()+" "+secondUser.getLastName()+" Logout" ));
-
 	}
 	@Test
-	public void v7shouldSeeAllUser(){
-		v6shouldLogAsAdmin();
+	public void v6shouldSeeAllUser(){
+		$("#login").click();
 		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
 	}
 	@Test
-	public void v8shouldAddUser(){
-		v6shouldLogAsAdmin();
+	public void v7shouldAddUser(){
+		$("#login").click();
 		$("#add-user-form").should(exist);
 		$("#first-name-input").sendKeys("Abdelhalim");
 		$("#last-name-input").sendKeys("Khaldi");
@@ -164,14 +149,14 @@ public class DemoApplicationTests {
 		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
 	}
 	@Test
-	public void v9shouldDeleteUser(){
-		v6shouldLogAsAdmin();
+	public void v8shouldDeleteUser(){
+		$("#login").click();
 		$("#delete-"+firstUser.getId()).click();
 		$$("[data-user-display]").shouldHave(CollectionCondition.size(1));
 	}
 	@Test
-	public void vz10updateUser(){
-		v6shouldLogAsAdmin();
+	public void v9updateUser(){
+		$("#login").click();
 		$("#modal-"+firstUser.getId()).click();
 		$("#first-name-"+firstUser.getId()).clear();
 		$("#first-name-"+firstUser.getId()).sendKeys("you");
@@ -182,6 +167,30 @@ public class DemoApplicationTests {
 
 
 	}
+	@Test
+	public void va1canLogoutAsAdmin(){
+		$("#login").click();
+		$("#logout").click();
+		// should be redirected to home page;
+		v1ShouldSeeHomePage();
+
+	}
+	@Test
+	public void va2CanSingup() {
+		$("#signup").click();
+		$("#signup-form").should(exist);
+		$("#username").sendKeys("okay12345");
+		$("#password").sendKeys("woow");
+		$("#confim_passowrd").sendKeys("woow");
+		$("#firstName").sendKeys("okay");
+		$("#lastName").sendKeys("lool");
+		$("#signupButton").click();
+		// should be redirectetd to dashboard
+
+		$("#records").should(exist);
+
+	}
+
 //	}
 //	@Test
 //	public void v4ShouldDeleteUser(){

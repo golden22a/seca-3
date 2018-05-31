@@ -1,4 +1,4 @@
-<h1 id="header">  {{user.firstName}} {{user.lastName}} <a routerLink='/logout'>Logout</a></h1>
+<h1 id="header">  {{user.firstName}} {{user.lastName}} <a routerLink='/logout' id="logout">Logout</a></h1>
 <div id="add-user-form">
     <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-input"/>
     <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-input"/>
