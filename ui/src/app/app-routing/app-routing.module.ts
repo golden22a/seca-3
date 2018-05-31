@@ -12,40 +12,36 @@ const routes: Routes = [
       {
         path:'login',
         component:LoginComponent
-      },{
-        path:'dashboard',
-        component:DashboardComponent,
-        children:[
-          {
-            path:'',
-            component:RecordsComponent
-          },{
-            path:'calendar',
-            component:CalendarComponent
-          }
-        ]
-      }
-      ,{
+      },
+     
+      {
         path:'signup',
         component:SignupComponent
-      },{
-        path:'',
+      },
+      {
+        path:'admin',
         component:UsersComponent
       },
       {
-        path:'users/:id',
-        component: RecordsComponent
-      },{
         path:'logout',
         component:LogoutComponent
       }
   ];
 const childRoute: Routes = [
-    {
-      path:'dashboard/calendar',
-      component:CalendarComponent
-    }
-
+  {
+    path:'dashboard',
+    component:DashboardComponent,
+    children:[
+      {
+        path:'',
+        component:RecordsComponent
+      },{
+        path:'calendar',
+        component:CalendarComponent
+      }
+    ]
+  }
+  ,
 ]
 
 @NgModule({

@@ -9,15 +9,18 @@ import { RecordsService } from '../../records.service';
 })
 export class DashboardComponent implements OnInit {
   user={
-    firstName:'',
-    lastName:''
-  }
+
+  };
   constructor(private current:CurrentUserService,private recordService:RecordsService) { }
 
   ngOnInit() {
+    console.log("dashboard init");
     this.current.userChange.subscribe(data=>{
       this.user=data.user;
     })
+    if(!this.user.firstName){
+     this.user=this.current.getUser();
+    }
   }
   call(){
     console.log("here");

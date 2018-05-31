@@ -14,6 +14,9 @@ export class UserComponent implements OnInit {
     modal;
     firstName;
     lastName;
+    username;
+    password="";
+    role;
   constructor(private userService:UsersService,private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -25,12 +28,16 @@ export class UserComponent implements OnInit {
   open(content) {
     this.firstName=this.user.firstName;
     this.lastName=this.user.lastName;
+    this.username=this.user.username;
    this.modal=this.modalService.open(content);
   }
   updateUser(){
-    this.userService.updateUser(this.user.id,this.firstName,this.lastName).subscribe(res=>{
+    this.userService.updateUser(this.user.id,this.firstName,this.lastName,this.username,this.password,this.role).subscribe(res=>{
       this.user.firstName=this.firstName;
       this.user.lastName=this.lastName;
+      this.user.role=this.role;
+      this.user.username=this.username;
+
       this.modal.close();
         })
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from '../signup.service';
 import { Router } from '@angular/router';
+import { CurrentUserService } from '../../current-user.service';
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +31,7 @@ export class SignupComponent implements OnInit {
     }
     this.signupService.signup(user).subscribe(res=>{
       localStorage.setItem("Authorization",res['Authorization']);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(["/dashboard"]);
     })
   }
 

@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.example.usersapi.repositories.UserRepository;
 
@@ -17,7 +18,11 @@ import static com.example.usersapi.controllers.SecurityConstant.TOKEN_PREFIX;
 public class UsersController {
     @Autowired
     private UserRepository userRepository;
-        @GetMapping("/")
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @GetMapping("/")
         public User findUser(HttpServletRequest request) {
             String token = request.getParameter(HEADER_STRING);
 
@@ -49,16 +54,21 @@ public class UsersController {
     }
     @PostMapping("/")
     public User createNewUser(@RequestBody User newUser) {
+        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+
         return userRepository.save(newUser);
     }
     @PatchMapping("/{userId}")
     public User updateUserById(@PathVariable Long userId, @RequestBody User userRequest) {
 
         User userFromDb = userRepository.findOne(userId);
-
+        if(  !userRequest.getPassword().equals("")){
+            System.out.println("heeeeeeeeeere");
+            userFromDb.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
+        }
         userFromDb.setFirstName(userRequest.getFirstName());
         userFromDb.setLastName(userRequest.getLastName());
-
+        userFromDb.setUsername(userRequest.getUsername());
         return userRepository.save(userFromDb);
     }
 

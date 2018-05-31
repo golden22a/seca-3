@@ -1,7 +1,13 @@
-<h1> USERS {{user.firstName}}</h1>
+<h1>  {{user.firstName}} <a routerLink='/logout'>Logout</a></h1>
 <div id="add-user-form">
     <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-input"/>
     <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-input"/>
+    <input type="text" placeholder="username"[(ngModel)]="username" value="{{username}}" id="username-input"/>
+    <input type="password" placeholder="password" [(ngModel)]="password" value="{{password}}" id="password-input"/>
+        <select [(ngModel)]="role" >
+        <option  value="USER" selected>USER</option>
+        <option  value="ADMIN" >ADMIN</option>
+      </select>
     <button class="btn  btn-outline-primary" (click)="addUser()" id="add-user">ADD</button>
 </div>
 <app-user *ngFor="let user of users" [user]='user'></app-user>

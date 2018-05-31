@@ -5,7 +5,7 @@ h1{
 }
 
 .content{
-    width:23em;
+    width:35em;
     margin:0 auto;
     height: 3em;
     font-size: 1.5em;
@@ -15,7 +15,7 @@ h1{
     padding: 0.5em;
 }
 .content p{
-    width:12em;
+    width:20em;
     display: inline-block;
    
 }
@@ -23,7 +23,7 @@ h1{
     text-decoration: none;
 }
 span{
-    margin-left: 5em;
+    margin-left: 8em;
 }
 span i{
     padding: 0.5em;
@@ -38,16 +38,18 @@ span i:last-of-type{
     font-size: 1.2em;
 }
 .modal-body{
-    width:20em;
     margin:1em auto;
-    height: 3em;
     font-size: 1.5em;
     background-color: white;
     padding: 0.5em;
 }
 .modal-body input {
-    width:7em;
-    margin: 0.1em 0.5em 0 0;
+    width:100%;
+    margin: 0.5em;
     padding-left:0.5em;
     border:0px;
 }
+.modal-body button{
+    margin: 0 40%;
+}
+

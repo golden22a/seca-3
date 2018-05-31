@@ -1,5 +1,8 @@
+h1{
+    text-align: center;
+}
 div{
-    width:23em;
+    width:40em;
     margin:1em auto;
     height: 3em;
     font-size: 1.5em;
@@ -13,4 +16,7 @@ div input {
     margin: 0.1em 0.5em 0 0;
     padding-left:0.5em;
     border:0px;
+}
+div button{
+    margin-left:1em;
 }

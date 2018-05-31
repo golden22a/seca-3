@@ -1,6 +1,8 @@
+import { CurrentUserService } from './../../current-user.service';
 import { LoginService } from './../login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CurrentUserService } from '../../current-user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private loginService:LoginService
-  ,private router:Router
+  ,private router:Router,private current:CurrentUserService
   
   ) { }
 
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
     }
     this.loginService.login(user).subscribe(res=>{
       localStorage.setItem("Authorization",res['Authorization']);
-      this.router.navigate(['/dashboard']);
+      this.current.loggedin();
     })
   }
 

@@ -38,7 +38,6 @@ dependencies {
 	testCompile 'com.codeborne:selenide:4.10.01'
 	compile 'com.google.guava:guava:25.0-jre'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-
 	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	runtime('org.springframework.boot:spring-boot-devtools')

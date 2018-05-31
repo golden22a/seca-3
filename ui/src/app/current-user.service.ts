@@ -17,8 +17,13 @@ export class CurrentUserService {
    if(this.token)
    this.http.get(`${environment.apiHost}/api/users/?Authorization=${this.token}`).subscribe(res=>{
      this.user=res;
+     console.log(this.user);
      this.userChange.next({"user":this.user,"token":this.token});
-    
+    if(this.user.role == "ADMIN"){
+      this.route.navigate(['/admin']);
+    }else {
+      this.route.navigate(['/dashboard']);
+    }
    },err=>{
      localStorage.removeItem('Authorization');
      this.userChange.next(null);
@@ -29,6 +34,7 @@ export class CurrentUserService {
     this.route.navigate(['/login']);
    }
    }
+
    getToken(){
      return this.token;
    }
@@ -37,5 +43,35 @@ export class CurrentUserService {
     localStorage.removeItem('Authorization');
     this.userChange.next(null);
     this.route.navigate(['/']);
+   }
+
+   
+   loggedin(){
+    console.log('getting auth');
+    this.token = localStorage.getItem('Authorization');
+    console.log(this.token);
+    if(this.token)
+    this.http.get(`${environment.apiHost}/api/users/?Authorization=${this.token}`).subscribe(res=>{
+      this.user=res;
+      console.log(this.user);
+      this.userChange.next({"user":this.user,"token":this.token});
+     if(this.user.role == "ADMIN"){
+       this.route.navigate(['/admin']);
+     }else {
+       this.route.navigate(['/dashboard']);
+     }
+     this.userChange.next({"user":this.user,"token":this.token});
+    },err=>{
+      localStorage.removeItem('Authorization');
+      this.userChange.next(null);
+      this.route.navigate(['/login']);
+    });
+    else{
+     this.userChange.next(null);
+     this.route.navigate(['/login']);
+    }
+   }
+   getUser(){
+     return this.user;
    }
 }
