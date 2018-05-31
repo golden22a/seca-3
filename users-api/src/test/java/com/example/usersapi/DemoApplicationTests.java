@@ -149,7 +149,38 @@ public class DemoApplicationTests {
 	}
 	@Test
 	public void v7shouldSeeAllUser(){
-				
+		v6shouldLogAsAdmin();
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
+	}
+	@Test
+	public void v8shouldAddUser(){
+		v6shouldLogAsAdmin();
+		$("#add-user-form").should(exist);
+		$("#first-name-input").sendKeys("Abdelhalim");
+		$("#last-name-input").sendKeys("Khaldi");
+		$("#username-input").sendKeys("golden22a");
+		$("#password-input").sendKeys("woooow");
+		$("#add-user").click();
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
+	}
+	@Test
+	public void v9shouldDeleteUser(){
+		v6shouldLogAsAdmin();
+		$("#delete-"+firstUser.getId()).click();
+		$$("[data-user-display]").shouldHave(CollectionCondition.size(1));
+	}
+	@Test
+	public void vz10updateUser(){
+		v6shouldLogAsAdmin();
+		$("#modal-"+firstUser.getId()).click();
+		$("#first-name-"+firstUser.getId()).clear();
+		$("#first-name-"+firstUser.getId()).sendKeys("you");
+		$("#last-name-"+firstUser.getId()).clear();
+		$("#last-name-"+firstUser.getId()).sendKeys("have");
+		$("#update-"+firstUser.getId()).click();
+		$("#user-"+firstUser.getId()).shouldHave(text("you have "+firstUser.getUsername()+" "+firstUser.getRole()));
+
+
 	}
 //	}
 //	@Test
