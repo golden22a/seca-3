@@ -35,9 +35,9 @@ public class DemoApplicationTests {
 	@Before
 	public void setUp() {
 		userRepository.deleteAll();
-		firstUser = new User("Ima", "Person");
+		firstUser = new User("Ima", "Person","okay","woow","USER");
 
-		secondUser = new User("Someone", "Else");
+		secondUser = new User("Someone", "Else","someone","wow123","USER");
 		Stream.of(firstUser, secondUser)
 				.forEach(user -> {
 					userRepository.save(user);
@@ -56,18 +56,12 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	public void v1ShouldShowAllUsers() throws Exception {
+	public void v1ShouldSeeHomePage() throws Exception {
 
 
 
-		// There should only be two users
-		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
-		long firstUserId = firstUser.getId();
-		$("#user-" + firstUserId).shouldHave(text(firstUser.getFirstName() + " " + firstUser.getLastName()));
-
-
-		long secondUserId = secondUser.getId();
-		$("#user-" + secondUserId).shouldHave(text(secondUser.getFirstName() + " " + secondUser.getLastName()));
+		$("#login").should(exist);
+		$("#sigunp").should(exist);
 
 	}
 	@Test
