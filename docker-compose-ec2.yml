@@ -1,0 +1,98 @@
+version: '3'
+services:
+  eureka:
+    image: anapsix/alpine-java:8_jdk_unlimited
+    ports:
+      - '8761:8761'
+    working_dir: /app
+    volumes:
+      - ./eureka-server:/app
+    command: './gradlew bootRun'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
+  api-gateway:
+    image: anapsix/alpine-java:8_jdk_unlimited
+    ports:
+      - '8080:8080'
+    working_dir: /app
+    volumes:
+      - ./api-gateway:/app
+    depends_on:
+      - eureka
+    command: './gradlew bootRun'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
+  users-api:
+    image: anapsix/alpine-java:8_jdk_unlimited
+    ports:
+      - '8081:8081'
+    working_dir: /app
+    volumes:
+      - ./users-api:/app
+    depends_on:
+      - eureka
+      - postgresdev
+    command: './gradlew bootRun'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
+  postgresdev:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=pgdev
+  flyway:
+    image: jimmyoak/flyway:4.0.3
+    command: "wait-for-it --timeout=60  --strict postgresdev:5432 -- flyway migrate"
+    volumes:
+      - './flyway/conf:/flyway/conf'
+      - './flyway/sql:/flyway/sql'
+  auth:
+    image: "node:9"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./auth:/home/node/app
+    depends_on:
+      - eureka
+    ports:
+      - "3000:3000"
+    command: "npm start"
+  oauth:
+    image: anapsix/alpine-java:8_jdk_unlimited
+    ports:
+      - '9000:9000'
+    working_dir: /app
+    volumes:
+      - ./oauth:/app
+    depends_on:
+      - eureka
+      - postgresdev
+    command: './gradlew bootRun'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
+  schedule:
+    image: anapsix/alpine-java:8_jdk_unlimited
+    ports:
+      - '8083:8083'
+    working_dir: /app
+    volumes:
+      - ./schedule-api:/app
+    depends_on:
+      - eureka
+      - postgresdev
+    command: './gradlew bootRun'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
+  
+
+
