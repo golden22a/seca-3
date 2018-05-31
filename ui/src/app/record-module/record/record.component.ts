@@ -1,5 +1,6 @@
 import { RecordsService } from './../../records.service';
 import { Component, OnInit,Input } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-record',
@@ -10,7 +11,8 @@ export class RecordComponent implements OnInit {
   @Input('record')
   record: any;
   address;
-  constructor(private recordService:RecordsService) { }
+  modal;
+  constructor(private recordService:RecordsService,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.address=" No Address Required";
@@ -20,5 +22,8 @@ export class RecordComponent implements OnInit {
   }
   add(){
     this.recordService.add(this.record).subscribe(a => console.log(a))
+  }
+  open(content) {
+   this.modal=this.modalService.open(content,{ size: 'lg' });
   }
 }
