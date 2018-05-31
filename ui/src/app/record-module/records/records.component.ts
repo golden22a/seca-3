@@ -11,7 +11,6 @@ export class RecordsComponent implements OnInit {
   constructor(private recordService:RecordsService) { }
 
   ngOnInit() {
-    console.log('on init')
     this.recordService
     .getAllPublicHearings()
     .subscribe(res=> {

@@ -19,6 +19,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule } from 'angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LogoutComponent } from './logout/logout.component';
     DashboardComponent,
     CalendarComponent,
     LogoutComponent,
+    HomeComponent,
 
    
   ],

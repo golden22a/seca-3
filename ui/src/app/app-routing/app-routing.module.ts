@@ -8,6 +8,7 @@ import {RecordsComponent} from './../record-module/records/records.component';
 import { SignupComponent } from '../signup-module/signup/signup.component';
 import { UserComponent } from '../user-module/user/user.component';
 import {LogoutComponent} from '../logout/logout.component';
+import {HomeComponent} from '../home/home.component';
 const routes: Routes = [
       {
         path:'login',
@@ -25,6 +26,9 @@ const routes: Routes = [
       {
         path:'logout',
         component:LogoutComponent
+      },{
+        path:'',
+        component:HomeComponent
       }
   ];
 const childRoute: Routes = [

@@ -2,7 +2,6 @@ import { CurrentUserService } from './../../current-user.service';
 import { LoginService } from './../login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CurrentUserService } from '../../current-user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
