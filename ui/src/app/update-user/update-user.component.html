@@ -1,5 +1,5 @@
-<div class='content' *ngIf="user" data-user-display>
-    <p id="user-{{user.id}}"> 
+<div class='content' *ngIf="user" id="userDisplay">
+    <p id="userData"> 
         {{user.firstName}}  {{user.lastName}} 
    </p><span>
      <i class="fas fa-edit" (click)="open(content)" id="modal-{{user.id}}"></i></span>

@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.stream.Stream;
@@ -21,6 +22,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
+import static java.lang.Thread.sleep;
 import static java.time.zone.ZoneRulesProvider.refresh;
 
 @RunWith(SpringRunner.class)
@@ -29,6 +31,8 @@ import static java.time.zone.ZoneRulesProvider.refresh;
 public class DemoApplicationTests {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	User firstUser;
 	User secondUser;
@@ -36,8 +40,10 @@ public class DemoApplicationTests {
 	public void setUp() {
 		userRepository.deleteAll();
 		firstUser = new User("Ima", "Person","okay","woow","USER");
-
+		firstUser.setPassword(bCryptPasswordEncoder.encode("woow"));
 		secondUser = new User("Someone", "Else","someone","wow123","USER");
+		secondUser.setPassword(bCryptPasswordEncoder.encode("wow123"));
+
 		Stream.of(firstUser, secondUser)
 				.forEach(user -> {
 					userRepository.save(user);
@@ -59,63 +65,67 @@ public class DemoApplicationTests {
 	public void v1ShouldSeeHomePage() throws Exception {
 
 
-
 		$("#login").should(exist);
-		$("#sigunp").should(exist);
+		$("#signup").should(exist);
 
 	}
 	@Test
-	public void v2ShouldAddaUser() throws Exception {
+	public void v2ShouldLogin()  {
 // Visit the new user page
-		long secondUserId = secondUser.getId();
+		$("#login").click();
 
-		$("#add-user-form").should(exist);
+		$("#login-form").should(exist);
 
 
-		// Add a new user
+		// login form
 
-		$("#first-name-input").sendKeys("Third");
-		$("#last-name-input").sendKeys("User");
+		$("#username").sendKeys("okay");
+		$("#password").sendKeys("woow");
 
-		$("#add-user").click();
+		$("#login").click();
 
-		// Now there should be three Users
-		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
+		// should be redirectetd to dashboard
+		$("#records").should(exist);
 
-		refresh();
-
-		// Now there should be three Users again after the refresh
-		$$("[data-user-display]").shouldHave(CollectionCondition.size(3));
-
-		// Check that the data is showing up for the third User
-		Long thirdUserId = secondUserId + 1;
-		$("#user-" + thirdUserId).shouldHave(text("Third User"));
 	}
 	@Test
-	public void v3ShouwEditaUser() {
-		long secondUserId = secondUser.getId();
-		// test updating first user
-		$("#modal-" + secondUserId).click();
-		$("#last-name-" + secondUserId).clear();
-		$("#first-name-" + secondUserId).click();
-		$("#last-name-" + secondUserId).sendKeys("firstLastName-edit");
-		$("#first-name-" + secondUserId).sendKeys("firstFirstName-edit");
+	public void v3CanSingup() {
+		$("#signup").click();
+		$("#signup-form").should(exist);
+		$("#username").sendKeys("okay12345");
+		$("#password").sendKeys("woow");
+		$("#confim_passowrd").sendKeys("woow");
+		$("#firstName").sendKeys("okay");
+		$("#lastName").sendKeys("lool");
+		$("#signupButton").click();
+		// should be redirectetd to dashboard
+
+		$("#records").should(exist);
+
+	}
+	@Test
+	public void v4CanUpdae(){
+		v2ShouldLogin();
+		$("#updateLink").click();
+		$("#userDisplay").should(exist);
+		$("#userData").shouldHave(text(""+firstUser.getFirstName()+" "+firstUser.getLastName()));
+		$("#modal-update").click();
+		
+
+	}
+
+//	}
+//	@Test
+//	public void v4ShouldDeleteUser(){
+//		// Test Deleting the first user
+//		long firstUserId = firstUser.getId();
+//		$("#user-" + firstUserId).should(exist);
+//		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
 //
-		$("#update-" + secondUserId).click();
-		$("#user-" + secondUserId).shouldHave(text("firstFirstName-edit firstLastName-edit"));
-
-	}
-	@Test
-	public void v4ShouldDeleteUser(){
-		// Test Deleting the first user
-		long firstUserId = firstUser.getId();
-		$("#user-" + firstUserId).should(exist);
-		$$("[data-user-display]").shouldHave(CollectionCondition.size(2));
-
-		$("#delete-" + firstUserId).click();
-		$("#user-" + firstUserId).shouldNot(exist);
-		$$("[data-user-display]").shouldHave(CollectionCondition.size(1));
-
-
-	}
+//		$("#delete-" + firstUserId).click();
+//		$("#user-" + firstUserId).shouldNot(exist);
+//		$$("[data-user-display]").shouldHave(CollectionCondition.size(1));
+//
+//
+//	}
 }
