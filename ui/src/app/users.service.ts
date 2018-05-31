@@ -4,12 +4,15 @@ import {HttpClient} from '@angular/common/http';
 import { CurrentUserService } from './current-user.service';
 @Injectable()
 export class UsersService {
+  temp : any;
   user;
   token;
   constructor(private http:HttpClient,private currentUser:CurrentUserService) { 
     this.currentUser.userChange.subscribe(data=>{
-      this.user=data.user;
-      this.token=data.token;
+     this.temp=data;
+      this.user=this.temp.user;
+      this.token=this.temp.token;
+      this.temp=null;
     })
     if(!this.token){
       this.token = this.currentUser.getToken();

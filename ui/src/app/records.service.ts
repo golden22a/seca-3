@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class RecordsService {
+  temp:any;
   token;
   gotToken = new Subject();
   records;
@@ -16,7 +17,7 @@ export class RecordsService {
   constructor(private http: HttpClient,private currentUSer:CurrentUserService) { 
     this.currentUSer.userChange.subscribe(data => {
       console.log("heere");
-      this.token=data.token
+      this.token=data['token'];
     this.gotToken.next(this.token);
     })
     if(!this.token){
@@ -46,13 +47,14 @@ export class RecordsService {
   if(!this.token){
   this.gotToken.subscribe(data => {
     this.http.get(`${environment.apiHost}/api/schedule/?Authorization=${this.token}`).subscribe(res=>{
-      if(res.length>0){
-      for(let i=0;i<res.length;i++){
-        if(i==res.length-1){
-        ids+=""+res[i].recordId+")"
+    this.temp=res;
+      if(this.temp.length>0){
+      for(let i=0;i<this.temp.length;i++){
+        if(i==this.temp.length-1){
+        ids+=""+this.temp[i].recordId+")"
         break;
         }
-        ids+=""+res[i].recordId+","
+        ids+=""+this.temp[i].recordId+","
       }
       
       this.getAllInfo(ids);
@@ -61,13 +63,14 @@ export class RecordsService {
   })
   }else{
     this.http.get(`${environment.apiHost}/api/schedule/?Authorization=${this.token}`).subscribe(res=>{
-      if(res.length>0){
-      for(let i=0;i<res.length;i++){
-        if(i==res.length-1){
-        ids+=""+res[i].recordId+")"
+      this.temp=res
+      if(this.temp.length>0){
+      for(let i=0;i<this.temp.length;i++){
+        if(i==this.temp.length-1){
+        ids+=""+this.temp[i].recordId+")"
         break;
         }
-        ids+=""+res[i].recordId+","
+        ids+=""+this.temp[i].recordId+","
       }
       
       this.getAllInfo(ids);

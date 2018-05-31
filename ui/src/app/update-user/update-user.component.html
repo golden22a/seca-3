@@ -2,7 +2,7 @@
     <p id="user-{{user.id}}"> 
         {{user.firstName}}  {{user.lastName}} 
    </p><span>
-     <i class="fas fa-edit" (click)="open(content)" id="modal-{{user.id}}"></i>
+     <i class="fas fa-edit" (click)="open(content)" id="modal-{{user.id}}"></i></span>
    <ng-template #content let-c="close" let-d="dismiss">
        <div class="modal-header">
          <h4 class="modal-title">Update User {{user.firstName}} {{user.lastName}}</h4>
@@ -19,7 +19,9 @@
        <div class="modal-footer">
          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
        </div>
+
      </ng-template>
+     </div>
      
-   </div>
-   
+  
+  

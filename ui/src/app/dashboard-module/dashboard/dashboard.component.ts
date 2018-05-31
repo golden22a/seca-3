@@ -8,25 +8,20 @@ import { RecordsService } from '../../records.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user={
-
-  };
+  user:any;
+  temp:any;
   constructor(private current:CurrentUserService,private recordService:RecordsService) { }
 
   ngOnInit() {
     console.log("dashboard init");
     this.current.userChange.subscribe(data=>{
-      this.user=data.user;
+      this.temp=data;
+      this.user=this.temp.user;
     })
     if(!this.user.firstName){
      this.user=this.current.getUser();
     }
   }
-  call(){
-    console.log("here");
-    this.recordService.getAllSavedRecords().subscribe(res=>{
-      console.log(res);
-    })
-  }
+
 
 }

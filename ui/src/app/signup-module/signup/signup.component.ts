@@ -13,7 +13,7 @@ export class SignupComponent implements OnInit {
   lastName;
   username;
   password;
-  confirm_password;
+  confirmPassword;
 
   constructor(private signupService:SignupService
   ,private router:Router

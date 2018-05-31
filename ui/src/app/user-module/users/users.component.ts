@@ -8,6 +8,7 @@ import {UsersService} from '../../users.service';
 })
 export class UsersComponent implements OnInit {
    users:any;
+   temp:any;
    user;
    firstName;
    lastName;
@@ -15,11 +16,13 @@ export class UsersComponent implements OnInit {
    password;
    role="USER";
   constructor(private userService:UsersService,private current:CurrentUserService) { 
-this.user={
+    
+    this.user={
   
 };
 this.current.userChange.subscribe(data=>{
-  this.user=data.user;
+  this.temp=data;
+  this.user=this.temp.user;
   })
 }
 ngOnInit(){

@@ -81,13 +81,14 @@ export class CalendarComponent {
 
   activeDayIsOpen: boolean = true;
   recordlist;
-
+  temp:any;
   constructor(private modal: NgbModal,private recordService:RecordsService) {}
   ngOnInit(){
     console.log("bou 123")
     this.recordService.getAllSavedRecords();
     this.recordService.recordLst.subscribe(data => {
-      data.forEach(el => {
+     this.temp=data;
+     this.temp.forEach(el => {
      let event={
       start:startOfDay(el.start_date),
       end:endOfDay(el.end_date),

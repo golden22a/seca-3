@@ -7,9 +7,17 @@ import { CurrentUserService } from './current-user.service';
   providedIn: 'root'
 })
 export class ScheduleService {
+  temp:any;
   token;
   constructor(private http:HttpClient,private currentUSer:CurrentUserService) { 
-    this.currentUSer.userChange.subscribe(data => this.token=data.token)
+    this.currentUSer.userChange.subscribe(data =>{
+      this.temp=data;
+      this.token=this.temp.token
+      this.temp=null;
+    })
+    if(!this.token){
+      this.token=this.currentUSer.getToken();
+    }
   }
 
   add(record){
