@@ -71,5 +71,25 @@ public class UsersController {
         userFromDb.setUsername(userRequest.getUsername());
         return userRepository.save(userFromDb);
     }
+    @PatchMapping("/")
+    public User updateUser(@RequestBody User userRequest,HttpServletRequest request) {
+        String token = request.getParameter(HEADER_STRING);
+
+        // parse the token.
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET.getBytes())
+                .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                .getBody();
+
+        String user = claims.get("user", String.class);
+        User userFromDb = userRepository.findByUsername(user);
+        if(  !userRequest.getPassword().equals("")){
+            System.out.println("heeeeeeeeeere");
+            userFromDb.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
+        }
+        userFromDb.setFirstName(userRequest.getFirstName());
+        userFromDb.setLastName(userRequest.getLastName());
+        return userRepository.save(userFromDb);
+    }
 
     }

@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
     this.firstName=this.user.firstName;
     this.lastName=this.user.lastName;
     this.username=this.user.username;
+    this.role=this.user.role;
    this.modal=this.modalService.open(content);
   }
   updateUser(){
@@ -37,7 +38,7 @@ export class UserComponent implements OnInit {
       this.user.lastName=this.lastName;
       this.user.role=this.role;
       this.user.username=this.username;
-
+      this.password="";
       this.modal.close();
         })
   }

@@ -1,0 +1,55 @@
+h1{
+    font-size: 4em;
+    letter-spacing: 5px;
+    margin :2em;
+}
+
+.content{
+    width:35em;
+    margin:0 auto;
+    height: 3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0.5em;
+}
+.content p{
+    width:20em;
+    display: inline-block;
+   
+}
+.content a{
+    text-decoration: none;
+}
+span{
+    margin-left: 8em;
+}
+span i{
+    padding: 0.5em;
+    cursor: pointer;
+    color:blue;
+}
+span i:last-of-type{
+    color:red;
+}
+
+.modal-header h4{
+    font-size: 1.2em;
+}
+.modal-body{
+    margin:1em auto;
+    font-size: 1.5em;
+    background-color: white;
+    padding: 0.5em;
+}
+.modal-body input {
+    width:100%;
+    margin: 0.5em;
+    padding-left:0.5em;
+    border:0px;
+}
+.modal-body button{
+    margin: 0 40%;
+}
+

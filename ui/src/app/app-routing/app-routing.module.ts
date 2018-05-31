@@ -40,7 +40,8 @@ const childRoute: Routes = [
       {
         path:'',
         component:RecordsComponent
-      },{
+      },
+      {
         path:'calendar',
         component:CalendarComponent
       },{

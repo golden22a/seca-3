@@ -42,4 +42,11 @@ export class UsersService {
       "role":role
     })
   }
+  updateSelf(firstName,lastName,password){
+    return this.http.patch(`${environment.apiHost}/api/users/?Authorization=${this.token}`,{
+      "firstName":firstName,
+      "lastName":lastName,
+      "password":password
+    })
+  }
 }

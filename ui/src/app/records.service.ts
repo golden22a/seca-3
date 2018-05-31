@@ -19,6 +19,10 @@ export class RecordsService {
       this.token=data.token
     this.gotToken.next(this.token);
     })
+    if(!this.token){
+      this.token=this.currentUSer.getToken();
+      this.gotToken.next(this.token);
+    }
 
   }
 

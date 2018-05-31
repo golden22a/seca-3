@@ -14,8 +14,11 @@
     <div class="modal-body">
         <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-{{user.id}}"/>
         <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-{{user.id}}"/>
-        <input type="text" placeholder="username" [(ngModel)]="username" value="{{username}}" id="username-{{user.id}}"/>
         <input type="text" placeholder="If you want to change the password" [(ngModel)]="password" value="" id="password-{{user.id}}" p/>
+        <select [(ngModel)]="role" >
+            <option  value="USER" selected>USER</option>
+            <option  value="ADMIN" >ADMIN</option>
+          </select>
         <button class="btn  btn-outline-primary" (click)="updateUser()">Update</button>    
     </div>
     <div class="modal-footer">

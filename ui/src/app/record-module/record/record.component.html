@@ -3,10 +3,12 @@
   <div class='record'>
     <P>
       {{this.address}} <br>
-      {{record.start_date}} <br>
-      {{record.end_date}} <br>
-<button (click)='add()'>Add to schedule</button>
-    </P>
+     From : {{record.start_date | date}} To:
+      {{record.end_date | date}} <br>
+<button (click)='add()' class="btn  btn-outline-primary">Add to schedule</button>
+<button (click)='content()' class="btn  btn-outline-info">info</button>
+  
+</P>
   
    
   </div>

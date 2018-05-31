@@ -41,13 +41,15 @@ export class CurrentUserService {
    logout(){
     console.log('heeere');
     localStorage.removeItem('Authorization');
+    this.user=null;
+    this.token=null;
     this.userChange.next(null);
     this.route.navigate(['/']);
    }
 
    
    loggedin(){
-    console.log('getting auth');
+    if(!this.user){
     this.token = localStorage.getItem('Authorization');
     console.log(this.token);
     if(this.token)
@@ -55,12 +57,11 @@ export class CurrentUserService {
       this.user=res;
       console.log(this.user);
       this.userChange.next({"user":this.user,"token":this.token});
-     if(this.user.role == "ADMIN"){
-       this.route.navigate(['/admin']);
-     }else {
-       this.route.navigate(['/dashboard']);
-     }
-     this.userChange.next({"user":this.user,"token":this.token});
+      if(this.user.role == "ADMIN"){
+        this.route.navigate(['/admin']);
+      }else {
+        this.route.navigate(['/dashboard']);
+      }
     },err=>{
       localStorage.removeItem('Authorization');
       this.userChange.next(null);
@@ -70,7 +71,13 @@ export class CurrentUserService {
      this.userChange.next(null);
      this.route.navigate(['/login']);
     }
-   }
+  }
+  if(this.user.role == "ADMIN"){
+    this.route.navigate(['/admin']);
+  }else {
+    this.route.navigate(['/dashboard']);
+  }
+  }
    getUser(){
      return this.user;
    }
