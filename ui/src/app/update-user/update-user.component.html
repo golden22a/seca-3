@@ -2,7 +2,7 @@
     <p id="userData"> 
         {{user.firstName}}  {{user.lastName}} 
    </p><span>
-     <i class="fas fa-edit" (click)="open(content)" id="modal-{{user.id}}"></i></span>
+     <i class="fas fa-edit" (click)="open(content)" id="modal-update"></i></span>
    <ng-template #content let-c="close" let-d="dismiss">
        <div class="modal-header">
          <h4 class="modal-title">Update User {{user.firstName}} {{user.lastName}}</h4>
@@ -11,10 +11,10 @@
          </button>
        </div>  
        <div class="modal-body">
-           <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-{{user.id}}"/>
-           <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-{{user.id}}"/>
+           <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-user"/>
+           <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-user"/>
            <input type="text" placeholder="If you want to change the password" [(ngModel)]="password" value="" id="password-{{user.id}}" p/>
-           <button class="btn  btn-outline-primary" (click)="updateUser()">Update</button>    
+           <button class="btn  btn-outline-primary" (click)="updateUser()" id="updateUser">Update</button>    
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>

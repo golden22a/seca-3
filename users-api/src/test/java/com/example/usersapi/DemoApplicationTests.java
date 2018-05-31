@@ -41,7 +41,7 @@ public class DemoApplicationTests {
 		userRepository.deleteAll();
 		firstUser = new User("Ima", "Person","okay","woow","USER");
 		firstUser.setPassword(bCryptPasswordEncoder.encode("woow"));
-		secondUser = new User("Someone", "Else","someone","wow123","USER");
+		secondUser = new User("Someone", "Else","someone","wow123","ADMIN");
 		secondUser.setPassword(bCryptPasswordEncoder.encode("wow123"));
 
 		Stream.of(firstUser, secondUser)
@@ -62,7 +62,7 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	public void v1ShouldSeeHomePage() throws Exception {
+	public void v1ShouldSeeHomePage()  {
 
 
 		$("#login").should(exist);
@@ -110,10 +110,47 @@ public class DemoApplicationTests {
 		$("#userDisplay").should(exist);
 		$("#userData").shouldHave(text(""+firstUser.getFirstName()+" "+firstUser.getLastName()));
 		$("#modal-update").click();
-		
+		$("#first-name-user").clear();
+		$("#first-name-user").sendKeys("you");
+		$("#last-name-user").clear();
+		$("#last-name-user").sendKeys("have");
+		$("#updateUser").click();
+		$("#userData").shouldHave(text("you have"));
+
+
 
 	}
+	@Test
+	public void v5CanLogout(){
+		v2ShouldLogin();
+		$("#logout").click();
+		// should be redirected to home page;
+		v1ShouldSeeHomePage();
+	}
+	@Test
+	public void v6shouldLogAsAdmin(){
+		v1ShouldSeeHomePage();
+		$("#login").click();
 
+		$("#login-form").should(exist);
+
+
+		// login form
+
+		$("#username").sendKeys("someone");
+		$("#password").sendKeys("wow123");
+
+		$("#login").click();
+
+		// should be redirectetd to admin dashboard
+		$("#header").should(exist);
+		$("#header").shouldHave(text(secondUser.getFirstName()+" "+secondUser.getLastName()+" Logout" ));
+
+	}
+	@Test
+	public void v7shouldSeeAllUser(){
+				
+	}
 //	}
 //	@Test
 //	public void v4ShouldDeleteUser(){
