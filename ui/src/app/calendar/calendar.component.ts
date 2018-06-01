@@ -105,7 +105,7 @@ export class CalendarComponent {
       start:startOfDay(el.start_date),
       end:endOfDay(el.end_date),
       id:el.request_id,
-      color:colors[Math.floor(Math.random()*2)],
+      color:colors[Math.floor(Math.random()*colors.length-1)],
       actions: this.actions,
       title:el.short_title,
       data:el.additional_description_1
