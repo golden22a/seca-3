@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username;
-  password;
+  username="";
+  password="";
   error={
     username:"",
     password:'',
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     if(this.username.length == 0){
       this.error.username = "please provide a username";
       check=false;
+    
     }
     if(this.password.length == 0 ){
       this.error.password = "please provide a password";
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
     return check;
   }
   login(){
+    console.log("heeere");
     if(this.verify()){
     let user={
       "username":this.username,
@@ -47,7 +49,12 @@ export class LoginComponent implements OnInit {
       this.current.loggedin();
     },err=>{
       this.error.message = "Username or Password incorrect";
-    })
+       })
   }
+  }
+  focused(input){
+    console.log(input);
+    this.error[input]='';
+    this.error.message='';
   }
 }
