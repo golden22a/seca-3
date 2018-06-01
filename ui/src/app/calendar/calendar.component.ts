@@ -35,6 +35,18 @@ const colors: any = [
    {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },{
+    primary:'#4DCCBD',
+    secondary:'#D6FFF6'
+  },{
+    primary:"#5B7553",
+    secondary:'#8EB897'
+  },{
+    primary:"#6969B3",
+    secondary:"#98C1D9"
+  },{
+    primary:"#9CFC97",
+    secondary:"#E6FAFC"
   }
 ];
 
