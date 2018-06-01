@@ -84,7 +84,7 @@ public class UsersController {
         String user = claims.get("user", String.class);
         User userFromDb = userRepository.findByUsername(user);
         if(  !userRequest.getPassword().equals("")){
-            System.out.println("heeeeeeeeeere");
+            System.out.println("changing password");
             userFromDb.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
         }
         userFromDb.setFirstName(userRequest.getFirstName());
