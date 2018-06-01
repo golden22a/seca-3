@@ -10,7 +10,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class UserComponent implements OnInit {
 
   @Input('user')
-   user: any;
+     user: any;
     modal;
     firstName;
     lastName;
