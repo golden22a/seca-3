@@ -10,9 +10,7 @@ import { RecordsService } from '../../records.service';
 export class DashboardComponent implements OnInit {
   user:any;
   temp:any;
-  constructor(private current:CurrentUserService,private recordService:RecordsService) { }
-
-  ngOnInit() {
+  constructor(private current:CurrentUserService,private recordService:RecordsService) { 
     console.log("dashboard init");
     this.current.userChange.subscribe(data=>{
       this.temp=data;
@@ -22,6 +20,10 @@ export class DashboardComponent implements OnInit {
       console.log("getting user");
      this.user=this.current.getUser();
     }
+  }
+
+  ngOnInit() {
+   
   }
 
 
