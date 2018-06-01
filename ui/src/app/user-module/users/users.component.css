@@ -2,7 +2,7 @@ h1{
     text-align: center;
 }
 div{
-    width:40em;
+    width:42em;
     margin:1em auto;
     height: 3em;
     font-size: 1.5em;
@@ -19,4 +19,7 @@ div input {
 }
 div button{
     margin-left:1em;
+}
+select{
+    display: inline-block;
 }

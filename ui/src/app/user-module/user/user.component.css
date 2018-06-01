@@ -53,3 +53,7 @@ span i:last-of-type{
     margin: 0 40%;
 }
 
+select{
+    margin:1em 0em;
+}
+

@@ -15,7 +15,7 @@
         <input type="text" placeholder="First Name" [(ngModel)]="firstName" value="{{firstName}}" id="first-name-{{user.id}}"/>
         <input type="text" placeholder="Last Name"[(ngModel)]="lastName" value="{{lastName}}" id="last-name-{{user.id}}"/>
         <input type="text" placeholder="If you want to change the password" [(ngModel)]="password" value="" id="password-{{user.id}}" p/>
-        <select [(ngModel)]="role" >
+        <select [(ngModel)]="role" class="form-control" >
             <option  value="USER" selected>USER</option>
             <option  value="ADMIN" >ADMIN</option>
           </select>
