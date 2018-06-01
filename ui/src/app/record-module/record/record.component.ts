@@ -21,7 +21,14 @@ export class RecordComponent implements OnInit {
     }
   }
   add(){
-    this.recordService.add(this.record).subscribe(a => console.log(a))
+    this.recordService.add(this.record).subscribe(a => {
+      console.log(a);
+      alert(`${this.record.short_title} has been added to your schedule`);
+    },err=>{
+      alert(` looks like you already have this in your schedule`);
+
+    }
+    )
   }
   open(content) {
    this.modal=this.modalService.open(content,{ size: 'lg' });
