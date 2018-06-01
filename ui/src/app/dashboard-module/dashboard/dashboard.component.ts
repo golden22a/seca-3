@@ -16,13 +16,14 @@ export class DashboardComponent implements OnInit {
       this.temp=data;
       this.user=this.temp.user;
     })
+  
+  }
+
+  ngOnInit() {
     if(!this.user){
       console.log("getting user");
      this.user=this.current.getUser();
     }
-  }
-
-  ngOnInit() {
    
   }
 

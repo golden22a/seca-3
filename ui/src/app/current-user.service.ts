@@ -79,6 +79,20 @@ export class CurrentUserService {
   }
   }
    getUser(){
+     if(!this.user){
+      this.token = localStorage.getItem('Authorization');
+      console.log(this.token);
+      if(this.token)
+      this.http.get(`${environment.apiHost}/api/users/?Authorization=${this.token}`).subscribe(res=>{
+        this.user=res;
+        console.log(this.user);
+        this.userChange.next({"user":this.user,"token":this.token});
+      },err=>{
+        localStorage.removeItem('Authorization');
+        this.userChange.next(null);
+        this.route.navigate(['/login']);
+      });
+     }
      return this.user;
    }
 }
