@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   username;
   password;
+  error={
+    username:"",
+    password:'',
+    message:''
+  }
 
 
   constructor(private loginService:LoginService
@@ -19,7 +24,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+  verify(){
+    let check=true;
+    if(this.username.length == 0){
+      this.error.username = "please provide a username";
+      check=false;
+    }
+    if(this.password.length == 0 ){
+      this.error.password = "please provide a password";
+      check=false;
+    }
+    return check;
+  }
   login(){
+    if(this.verify()){
     let user={
       "username":this.username,
       "password":this.password
@@ -27,7 +45,9 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user).subscribe(res=>{
       localStorage.setItem("Authorization",res['Authorization']);
       this.current.loggedin();
+    },err=>{
+      this.error.message = "Username or Password incorrect";
     })
   }
-
+  }
 }
